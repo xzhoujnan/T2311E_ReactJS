@@ -1,81 +1,39 @@
 import logo from './logo.svg';
 import './App.css';
-import Product from '../src/component/common/Product';
+import Product from './component/common/Product';
+import Menu from './component/common/Menu';
+import { Route, Routes } from 'react-router-dom';
+import Home from './component/page/Home';
+import Category from './component/page/Category';
+import Cart from './component/page/Cart';
 
-function App() {
+function App() { // jsx
   const ps = [
-  {
-    name : "Iphone 15 Promax 128GB",
-    price : 1499,
-    qty : 0,
-  },
-  {
-    name : "Iphone 15 Pro 128GB",
-    price : 1300,
-    qty : 1,
-  },
-  {
-    name : "Iphone 15 Plus 128Gb",
-    price : 1099,
-    qty : 0,
-  },
-  {
-    name : "Iphone 15 12GB",
-    price : 899,
-    qty : 1,
-  },
+    {
+      name: "Iphone 15 Pro Max",
+      price: 1200,
+      qty: 1
+    },
+    {
+      name: "Iphone 14 Pro Max",
+      price: 1100,
+      qty: 10
+    },
+    {
+      name: "Iphone 13",
+      price: 800,
+      qty: 0
+    }
   ];
-
   return (
     <div className="App">
-      <nav class="navbar navbar-expand-lg bg-body-tertiary">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#">Navbar</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Dropdown
-              </a>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li><hr class="dropdown-divider"/></li>
-                <li><a class="dropdown-item" href="#">Something else here</a></li>
-              </ul>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-            </li>
-          </ul>
-          <form class="d-flex" role="search">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-            <button class="btn btn-outline-success" type="submit">Search</button>
-          </form>
-        </div>
-      </div>
-    </nav>
-      <section>
-        <div className='container'>
-          <div className='row'>
-          { // code logic here
-            ps.map(
-              (e,i)=>{
-                return <Product key={i} item={e}/>
-              }
-            )
-          }
-        </div>
-       </div>
+      <Menu/>
+      <section className='main'>
+          <Routes>
+              <Route path='/' Component={Home} />
+              <Route path='/category' Component={Category} />
+              <Route path='/cart' Component={Cart} />
+          </Routes>
        </section>
     </div>
   );
