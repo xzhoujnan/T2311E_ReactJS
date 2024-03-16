@@ -1,25 +1,26 @@
+import { useParams } from "react-router-dom";
 import Product from "../common/Product";
 import { useState , useEffect } from "react";
+
 function ProductDetail(props){
-    const [item,setItem] = useState({});
+    const [item,setItem] = useState({}); // khởi tạo 1 state
+    const {id} = useParams();
     function callData(){
-        const url = `https://dummyjson.com/products/2`;
+        const url = `https://dummyjson.com/products/${id}`;
         fetch(url).then(rs=>rs.json())
         .then(data=>{
             setItem(data);
         })
     }
-    useEffect(function(){
+    useEffect(function(){ // setTimeOut
         callData();
     },[]);
-    return(
-        <div>
+    return  (
+       <div>
             <h1>Product Detail</h1>
-
-
-            <button onClick={callData} className="btn btn-primary" type="button">Pick</button>
-            <Product item={item} />
-        </div>
+        
+            <Product item={item}/>
+       </div>     
     );
 }
 export default ProductDetail;

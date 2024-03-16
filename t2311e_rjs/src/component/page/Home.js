@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
-import Product from "../common/Product";
+import { Col, Container, Row } from "react-bootstrap";
+import ProductCard from "../common/ProductCard";
+import Slider from "../common/Slider";
 
 function Home(props){
     const [list,setList] = useState([]);
@@ -13,15 +15,29 @@ function Home(props){
     useEffect(function(){
         callData();
     },[]);
+    
     return (
-        <div>
-             <h1>Home Page content</h1>
+        <>
+        <section>
+            <Container>
+                <Slider/>
+            </Container>
+        </section>
+        <section>
+            <Container>
+             <h1>Product Listing</h1>
+             <Row>
              {
                 list.map((e,i)=>{
-                    return <Product item={e} key={i}/>
+                return <Col xs={3} key={i}>
+                        <ProductCard item={e} />
+                    </Col>
                 })
              }
-        </div>
+             </Row>
+            </Container>
+        </section>
+        </>
     );
 }
 export default Home;

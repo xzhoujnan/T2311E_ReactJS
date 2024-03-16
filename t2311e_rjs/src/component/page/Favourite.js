@@ -2,11 +2,11 @@ import { useContext } from "react";
 import { Container, Table } from "react-bootstrap";
 import Context from "../../context/context";
 
-function Cart(props){
-    const {cart,setCart} =  useContext(Context);
+function Favourite(props){
+    const {favourite,setFavourite} = useContext(Context);
     return (
         <>
-        <h1>Cart Page</h1>
+        <h1>Favourite Item page</h1>
         <Container>
             <Table>
                 <thead>
@@ -17,7 +17,7 @@ function Cart(props){
                 </thead>
                 <tbody>
                     {
-                        cart.map((e,i)=>{
+                        favourite.map((e,i)=>{
                             return <tr key={i}>
                                 <td>{e.id}</td>
                                 <td><img src={e.thumbnail}  width={125}/></td>
@@ -32,4 +32,4 @@ function Cart(props){
         </>
     );
 }
-export default Cart;
+export default Favourite;

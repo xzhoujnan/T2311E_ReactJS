@@ -1,10 +1,13 @@
+import { useContext } from "react";
 import { NavLink } from "react-router-dom";
+import Context from "../../context/context";
 
 function Menu(props){
+    const {cart,setCart,favourite,setFavourite} = useContext(Context);
     return (
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">Navbar</a>
+                <a class="navbar-brand" href="#">NAV.Bar</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
                 </button>
@@ -20,7 +23,10 @@ function Menu(props){
                         <NavLink to={"/product"} className="nav-link">Product</NavLink>
                     </li>
                     <li class="nav-item">
-                    <NavLink to={"/cart"} className="nav-link">Cart</NavLink>
+                    <NavLink to={"/cart"} className="nav-link">Cart ({cart.length})</NavLink>
+                    </li>
+                    <li class="nav-item">
+                    <NavLink to={"/favourite"} className="nav-link">Favourite Item ({favourite.length})</NavLink>
                     </li>
                 </ul>
                 <form class="d-flex" role="search">

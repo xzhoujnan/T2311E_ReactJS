@@ -1,28 +1,26 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import Context from "../../context/context";
 
-//create component :
-
-function Product(props)
-{
+function Product(props){ // component
     const item = props.item;
-    const [count,setCount] = useState(0);
-    function increment()
-    {
-        setCount(count+1);
+    const {cart,setCart,favourite,setFavourite} = useContext(Context);
+    function addToCart(){
+        setCart([...cart,item]);
+        // cart.push(item)
+        // setCart(cart);
     }
-    function reduce()
-    {
-        setCount(count-1);
+    function addFavourite(){
+        setFavourite([...favourite,item]);
     }
-    return(
+    return (
         <div className="col-4">
-            <img src={item.thumbnail}></img>
+            <h1>In cart : {cart.length}</h1>
+            <img src={item.thumbnail} />
             <h2>{item.title}</h2>
-            <p>{item.price}$</p>
-            <p>{item.qty > 0 ? "In stock" : " Out of stock "}</p>
-            <h2>Count : {count}</h2>
-            <button onClick={increment} className="btn btn-primary" type="button">Increment</button>
-            <button onClick={reduce} className="btn btn-primary" type="button">Reduce</button>
+            <p>${item.price}</p>
+            <p>{item.qty > 0 ? "In stock": "Out of stock"}</p>
+            <button onClick={addToCart} className="btn btn-primary" type="button">Add to cart</button>
+            <button onClick={addFavourite} className="btn btn-primary" type="button">Add Favourite Item</button>
         </div>
     );
 }
